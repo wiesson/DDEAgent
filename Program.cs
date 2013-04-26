@@ -7,10 +7,15 @@ using System.Threading.Tasks;
 namespace DDEAgent {
     class Program {
         static void Main(string[] args) {
-           // Configuration.LoadFile();
+            string serverAddress = "192.168.10.1";
+            int serverPort = 12345;
 
-            string datetime = DateTime.Now.ToString("yyMMdd-HHmmssfff");
-            Console.WriteLine(datetime);
+            // Configuration.LoadFile();
+            
+            string datetime = DateTime.Now.ToString("yyMMddHHmmssfff");
+            
+            // Console.WriteLine(datetime);
+            
             string[,] dataArr = new string[,] {
                 {"SPINDLE_SPEED","/Channel/Spindle/cmdSpeed[1]" },
 		        {"SPINDLE_OVR","/Channel/Spindle/speedOvr[1]" },
@@ -31,13 +36,13 @@ namespace DDEAgent {
 		        {"ALARM","/Channel/State/chanAlarm" }
             };
 
-            for (int i = 0; i < 1 /*dataArr.GetLength(0)*/ ; i++) {
-                Network.TcpClient(dataArr[i, 0], datetime);    
+            for (int i = 0; i < dataArr.GetLength(0); i++) {
+                Network.SendMessage(serverAddress, serverPort, dataArr[i, 0], datetime);
                 System.Console.WriteLine(i + ":" + dataArr[i, 0] + "->" + dataArr[i, 1]);
-            }
+            } 
 
-            string test = Console.ReadLine();
-            
+            // todo: remove ReadLine below
+            string test = Console.ReadLine();            
         }
     }
 }

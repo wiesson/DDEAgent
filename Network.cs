@@ -5,42 +5,36 @@ using System.Net;
 using System.Collections.Generic;
 using System.IO;
 
-namespace DDEAgent {
-    class Network {
-        public static string TcpClient(string var, string datetime) {
+class Network {
+    public static void SendMessage(string serverAddress, int serverPort, string machineEvent, string datetime) {
 
-            string machineEvent = var;
-            string machineTime = datetime;
-            string machineId = "1-1-1";
-            string machineValue = "11";
+        IPAddress ipAddress = IPAddress.Parse(serverAddress);
+      
 
-            try {
-                string message = "<?xml version=\"1.0\" encoding=\"utf-8\" ?><message><id>" 
-                    + machineId + "</id><datetime>" 
-                    + datetime + "</datetime><event>" 
-                    + var + "</event><value>"
-                    + machineValue + "</value></message>";
+        string clientEvent = machineEvent;
+        string clientTime = datetime;
+        string clientId = "1-1-1";
+        string clientValue = "11";
 
-                TcpClient client = new TcpClient();
+        string message = "<?xml  version=\"1.0\"  encoding=\"utf-8\"  ?><message><id>"
+               + clientId + "</id><datetime>"
+               + clientTime + "</datetime><event>"
+               + clientEvent + "</event><value>"
+               + clientValue + "</value></message>";
 
-                IPEndPoint serverEndPoint = new IPEndPoint(IPAddress.Parse("192.168.10.1"), 12345);
+        TcpClient client = new TcpClient(serverAddress, serverPort);
+        try {
+            Stream s = client.GetStream();
+            StreamWriter sw = new StreamWriter(s);
+            sw.AutoFlush = true;
 
-                client.Connect(serverEndPoint);
+            sw.WriteLine(message);
 
-                NetworkStream clientStream = client.GetStream();
-
-                Console.WriteLine(message);
-
-                ASCIIEncoding encoder = new ASCIIEncoding();
-                byte[] buffer = encoder.GetBytes(message);
-                clientStream.Write(buffer, 0, buffer.Length);
-                clientStream.Flush();
-            }
- 
-            catch (Exception e) {
-                Console.WriteLine("Error..... " + e.StackTrace);
-            }
-        return "null";
+            s.Close();
+        } catch (Exception e) {
+            Console.WriteLine("Error: " + e.StackTrace);
+        } finally {
+            client.Close();
         }
     }
 }
