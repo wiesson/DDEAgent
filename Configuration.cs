@@ -3,9 +3,9 @@ using System.Xml;
 
 namespace DDEAgent {
     class Configuration {
+
         public static void LoadFile() {
             // todo: implement config XML
-            // string machineId, serverAddress, serverPort;
             
             XmlDocument doc = new XmlDocument();
             doc.Load("config.xml");

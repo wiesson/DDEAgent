@@ -1,48 +1,32 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace DDEAgent {
     class Program {
         static void Main(string[] args) {
+            // todo: move to Configuration.cs
             string serverAddress = "192.168.10.1";
             int serverPort = 12345;
+            string clientId = "1-1-1";
+            string eventValue = "11";
 
+            // read config.xml
             // Configuration.LoadFile();
+            string eventTime = DateTime.Now.ToString("yyMMddHHmmssfff");
             
-            string datetime = DateTime.Now.ToString("yyMMddHHmmssfff");
-            
-            // Console.WriteLine(datetime);
-            
-            string[,] dataArr = new string[,] {
-                {"SPINDLE_SPEED","/Channel/Spindle/cmdSpeed[1]" },
-		        {"SPINDLE_OVR","/Channel/Spindle/speedOvr[1]" },
-		        {"SPINDLE_LOAD","/Channel/Spindle/driveLoad[1]" },
-		        {"POSITION_X","/Channel/MachineAxis/actToolBasePos[1]" },
-		        {"POSITION_Y","/Channel/MachineAxis/actToolBasePos[2]" },
-		        {"POSITION_Z","/Channel/MachineAxis/actToolBasePos[3]" },
-		        {"PROGRAM_STATUS","/Channel/ProgramInfo/progName" },
-		        {"LINE","/Channel/ProgramInfo/actLineNumber" },
-		        {"BLOCK","/Channel/ProgramInfo/singleBlock[2]" },
-		        {"PROGRAM","/Channel/ProgramInfo/progNamePROGRAM" },
-		        {"PATH_FEEDRATE","/Channel/State/actFeedRateIpo" },
-		        {"PATH_FEEDRATEOVR","/Channel/State/feedRateIpoOvr" },
-		        {"TOOL_NUMBER","/Channel/State/actTNumber" },
-		        {"EXECUTION","/Channel/State/progStatus" },
-		        {"PROGRAM_STATUS","/Channel/ProgramPointer/actInvocCount" },
-		        {"CONTROLLER_MODE","/Bag/State/opMode" },
-		        {"ALARM","/Channel/State/chanAlarm" }
-            };
+            // todo: implement DDE Event Listener
+            string eventEventDemo = "/Channel/State/actTNumber";
 
-            for (int i = 0; i < dataArr.GetLength(0); i++) {
-                Network.SendMessage(serverAddress, serverPort, dataArr[i, 0], datetime);
-                System.Console.WriteLine(i + ":" + dataArr[i, 0] + "->" + dataArr[i, 1]);
-            } 
+            // translate event
+            string eventEvent = Event.Translator(eventEventDemo);
 
-            // todo: remove ReadLine below
-            string test = Console.ReadLine();            
+            Network.SendMessage(serverAddress, serverPort, clientId, eventTime, eventEvent, eventValue);
+            
+            // todo: some debug below
+            // Console.WriteLine(eventTime);
+            // Console.WriteLine(eventEvent);
+            // string test = Console.ReadLine();            
         }
     }
 }
