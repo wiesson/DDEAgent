@@ -1,33 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Device>
-	<Description type="test">
-		<manufacturer>Hermle</manufacturer>
-		<model>C50U</model>
-		<kind>CNC</kind>
-		<hmi>Sinumerik 840D</hmi>
-	</Description>
-	<ConfigItems>
-		<ConfigItem name="id">1-0-1</ConfigItem>
+  <Description type="test">
+    <manufacturer>Hermle</manufacturer>
+    <model>C50U</model>
+    <kind>CNC</kind>
+    <hmi>Sinumerik 840D</hmi>
+    </Description>
+  <ConfigItems>
+    <ConfigItem name="id">1-0-1</ConfigItem>
     <ConfigItem name="server">192.168.10.1</ConfigItem>
     <ConfigItem name="port">12345</ConfigItem>
-	</ConfigItems>
-	<DataItems type="sinumerik">
-		<DataItem unified="SPINDLE_SPEED" name="/Channel/Spindle/cmdSpeed[1]" />
-		<DataItem unified="SPINDLE_OVR" name="/Channel/Spindle/speedOvr[1]" />
-		<DataItem unified="SPINDLE_LOAD" name="/Channel/Spindle/driveLoad[1]" />
-		<DataItem unified="POSITION_X" name="/Channel/MachineAxis/actToolBasePos[1]" />
-		<DataItem unified="POSITION_Y" name="/Channel/MachineAxis/actToolBasePos[2]" />
-		<DataItem unified="POSITION_Z" name="/Channel/MachineAxis/actToolBasePos[3]" />
-		<DataItem unified="PROGRAM_STATUS" name="/Channel/ProgramInfo/progName" />
-		<DataItem unified="LINE" name="/Channel/ProgramInfo/actLineNumber" />
-		<DataItem unified="BLOCK" name="/Channel/ProgramInfo/singleBlock[2]" />
-		<DataItem unified="PROGRAM" name="/Channel/ProgramInfo/progNamePROGRAM" />
-		<DataItem unified="PATH_FEEDRATE" name="/Channel/State/actFeedRateIpo" />
-		<DataItem unified="PATH_FEEDRATEOVR" name="/Channel/State/feedRateIpoOvr" />
-		<DataItem unified="TOOL_NUMBER" name="/Channel/State/actTNumber" />
-		<DataItem unified="EXECUTION" name="/Channel/State/progStatus" />
-		<DataItem unified="PROGRAM_STATUS" name="/Channel/ProgramPointer/actInvocCount" />
-		<DataItem unified="CONTROLLER_MODE" name="/Bag/State/opMode" />
-		<DataItem unified="ALARM" name="/Channel/State/chanAlarm" />
-	</DataItems>
+  </ConfigItems>
+  <DataItems type="sinumerik">
+    <DataItem unified="SPINDLE_SPEED" name="/Channel/Spindle/cmdSpeed[1]" />
+    <DataItem unified="SPINDLE_OVR" name="/Channel/Spindle/speedOvr[1]" />
+    <DataItem unified="SPINDLE_LOAD" name="/Channel/Spindle/driveLoad[1]" />
+    <DataItem unified="POSITION_X" name="/Channel/MachineAxis/actToolBasePos[1]" />
+    <DataItem unified="POSITION_Y" name="/Channel/MachineAxis/actToolBasePos[2]" />
+    <DataItem unified="POSITION_Z" name="/Channel/MachineAxis/actToolBasePos[3]" />
+    <DataItem unified="PROGRAM_STATUS" name="/Channel/ProgramInfo/progName" />
+    <DataItem unified="LINE" name="/Channel/ProgramInfo/actLineNumber" />
+    <DataItem unified="BLOCK" name="/Channel/ProgramInfo/singleBlock[2]" />
+    <DataItem unified="PROGRAM" name="/Channel/ProgramInfo/progNamePROGRAM" />
+    <DataItem unified="PATH_FEEDRATE" name="/Channel/State/actFeedRateIpo" />
+    <DataItem unified="PATH_FEEDRATEOVR" name="/Channel/State/feedRateIpoOvr" />
+    <DataItem unified="TOOL_NUMBER" name="/Channel/State/actTNumber" />
+    <DataItem unified="EXECUTION" name="/Channel/State/progStatus" />
+    <DataItem unified="PROGRAM_STATUS" name="/Channel/ProgramPointer/actInvocCount" />
+    <DataItem unified="CONTROLLER_MODE" name="/Bag/State/opMode" />
+    <DataItem unified="ALARM" name="/Channel/State/chanAlarm" />
+  </DataItems>
 </Device>
