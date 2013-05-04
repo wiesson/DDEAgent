@@ -1,58 +1,42 @@
 ﻿using System;
 using System.Xml;
+using System.Collections.Generic;
 
 namespace DDEAgent {
     class Configuration {
+        private string _serverAddress = "";
+        public string serverAddress {
+            get { return _serverAddress; }
+            set { _serverAddress = value; }
+        }
+        private int _serverPort;
+        public int serverPort {
+            get { return _serverPort; }
+            set { _serverPort = value; }
+        }
+        private string _clientId;
+        public string clientId {
+            get { return _clientId; }
+            set { _clientId = value; }
+        }
+        
+        public void loadFile(string path) {
+            try {
+                XmlDocument doc = new XmlDocument();
+                doc.Load(path);
 
-        public static void LoadFile() {
-            // todo: implement config XML
-            
-            XmlDocument doc = new XmlDocument();
-            doc.Load("config.xml");
+                serverAddress = doc.SelectSingleNode("descendant::*[name(.) ='Server']").InnerText;
+                serverPort  = Convert.ToInt32(doc.SelectSingleNode("descendant::*[name(.) ='Port']").InnerText);
+                clientId = doc.SelectSingleNode("descendant::*[name(.) ='Id']").InnerText;
 
-            Console.Write(doc.DocumentElement.GetAttribute("machineId"));
-            // get DataItems 
-            XmlNodeList dataItems = doc.GetElementsByTagName("DataItem");
-            // get ConfigItems
-            XmlNodeList configList = doc.GetElementsByTagName("ConfigItem");
-            for (int i = 0; i < configList.Count; i++) {
-                Console.WriteLine(configList[i].InnerXml + "\n");
-            }
-
-            /* public static void CreateXML() {
-
-            // Create the XmlDocument.
-            XmlDocument doc = new XmlDocument();
-            // doc.LoadXml("<item><name>wrench</name></item>");
-            doc.Load("c:/Users/arnewiese/Desktop/DDEAgent/config.xml");
-            /* 
-            XmlNodeList elemList = doc.GetElementsByTagName("DataItems");
-          
-            for (int i = 0; i < elemList.Count; i++) {
-                Console.WriteLine(elemList[i].InnerXml + "\n");
-            } */
-            /*
-            doc.GetElementsByTagName("global");
-            foreach (XmlElement elmt in infolist) {
-                XmlAttribute attr = elmt.Attributes["key"];
-                if (attr.Value == "ProgramDir") {
-                    programdir = elmt.Attributes["value"].Value;
+                XmlNodeList nodeList = doc.GetElementsByTagName("DataItem");
+                foreach (XmlNode item in nodeList) {
+                    Events.ListAdd(item.Attributes.Item(0).Value, item.Attributes.Item(1).Value);
                 }
-            } 
 
-            
-            // Add a price element.
-            XmlElement newElem = doc.CreateElement("price");
-            newElem.InnerText = "10.95";
-            doc.DocumentElement.AppendChild(newElem);
-
-            // Save the document to a file and auto-indent the output.
-            XmlTextWriter writer = new XmlTextWriter("data.xml", null);
-            writer.Formatting = Formatting.Indented;
-            doc.Save(writer);
-
-            System.Console.WriteLine("XML written.");
-        } */
+            } catch (Exception ex) {
+                Console.WriteLine("Error in loadFile: "+ ex);            
+            }
         }
     }
 }
