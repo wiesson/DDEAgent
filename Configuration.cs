@@ -4,31 +4,30 @@ using System.Collections.Generic;
 
 namespace DDEAgent {
     class Configuration {
-        private string _serverAddress = "";
-        public string serverAddress {
-            get { return _serverAddress; }
-            set { _serverAddress = value; }
-        }
-        private int _serverPort;
-        public int serverPort {
-            get { return _serverPort; }
-            set { _serverPort = value; }
-        }
-        private string _clientId;
-        public string clientId {
-            get { return _clientId; }
-            set { _clientId = value; }
-        }
+        public string clientId { get; set; }
+        public string serverAddress { get; set; }
+        public int serverPort { get; set; }
         
         public void loadFile(string path) {
             try {
                 XmlDocument doc = new XmlDocument();
                 doc.Load(path);
+                
+                // find ConfigItems
+                XmlNodeList configList = doc.GetElementsByTagName("ConfigItem");
+                for(int i = 0; i < configList.Count; i++) {
+                    if (configList.Item(i).Attributes.Item(0).Value.Equals("id")) {
+                        clientId = configList.Item(i).InnerText;
+                    }
+                    if (configList.Item(i).Attributes.Item(0).Value.Equals("server")) {
+                        serverAddress = configList.Item(i).InnerText;
+                    }
+                    if (configList.Item(i).Attributes.Item(0).Value.Equals("port")) {
+                        serverPort = Convert.ToInt32(configList.Item(i).InnerText);
+                    }
+                }
 
-                serverAddress = doc.SelectSingleNode("descendant::*[name(.) ='Server']").InnerText;
-                serverPort  = Convert.ToInt32(doc.SelectSingleNode("descendant::*[name(.) ='Port']").InnerText);
-                clientId = doc.SelectSingleNode("descendant::*[name(.) ='Id']").InnerText;
-
+                // find Attributes
                 XmlNodeList nodeList = doc.GetElementsByTagName("DataItem");
                 foreach (XmlNode item in nodeList) {
                     Events.ListAdd(item.Attributes.Item(0).Value, item.Attributes.Item(1).Value);

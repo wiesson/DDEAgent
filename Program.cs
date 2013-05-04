@@ -10,7 +10,7 @@ namespace DDEAgent {
             Configuration myMachine = new Configuration();
             Network myNetwork = new Network();
 
-            myMachine.loadFile("c:/Users/arnewiese/Desktop/DDEAgent/config.xml");
+            myMachine.loadFile("c:/Users/arnewiese/Desktop/DDEAgent/DDEAgent/config.xml");
             // Events.ListGet();
             
             // get DateTime    
@@ -29,7 +29,7 @@ namespace DDEAgent {
             Queue myQ = new Queue();
 
             try {
-                myNetwork.SendMessage(myMachine.serverAddress, myMachine.serverPort, xmlMessage);
+                myNetwork.sendMessage(myMachine.serverAddress, myMachine.serverPort, xmlMessage);
             } catch (Exception ex) {
                 Console.WriteLine(ex);
                 myQ.Enqueue(xmlMessage);
