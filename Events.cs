@@ -24,7 +24,7 @@ namespace DDEAgent {
         }
 
         public static string searchEvent(string myEvent) {
-            string temp;
+            string temp = "";
             for (int i = 0; i < list.Count; i++) {
                 if (list[i].foreignEvent.Equals(myEvent)) {
                     Console.WriteLine("Event " + list[i].unifiedEvent + " Equals " + myEvent);
@@ -34,7 +34,7 @@ namespace DDEAgent {
                     temp = "unknown Event :-(";
                 }  
             }
-            return "";
+            return temp;
         }
 
         /*
