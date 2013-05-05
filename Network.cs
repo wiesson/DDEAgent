@@ -5,7 +5,7 @@ using System.Net.Sockets;   // For TcpClient, NetworkStream, SocketException
 using System.IO;
 
 class Network {
-    public void sendMessage(string serverAddress, int serverPort, string xmlMessage) {
+    public static void sendMessage(string serverAddress, int serverPort, string xmlMessage) {
 
         IPAddress ipAddress = IPAddress.Parse(serverAddress);
         TcpClient client = new TcpClient(serverAddress, serverPort);

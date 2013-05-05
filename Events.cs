@@ -33,7 +33,7 @@ namespace DDEAgent {
             string xmlMessage = "<?xml  version=\"1.0\"  encoding=\"utf-8\"  ?><message><id>"
               + clientId + "</id><datetime>"
               + eventTime + "</datetime><event>"
-              + eventEvent + "</event><value>"
+              + Events.searchEvent(eventEvent) + "</event><value>"
               + eventValue + "</value></message>";
             return xmlMessage;
         }

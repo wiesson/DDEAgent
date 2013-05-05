@@ -1,14 +1,21 @@
 ﻿using System;
 using System.Xml;
 using System.Collections.Generic;
+using System.IO;
 
 namespace DDEAgent {
     class Configuration {
-        public string clientId { get; set; }
-        public string serverAddress { get; set; }
-        public int serverPort { get; set; }
+        public static string clientId { get; set; }
+        public static string serverAddress { get; set; }
+        public static int serverPort { get; set; }
         
-        public void loadFile(string path) {
+        public static void loadFile() {
+            string path = "config.xml";
+            
+            // todo: for debug
+            if(!File.Exists(path)){
+                path = "c:/Users/arnewiese/Desktop/DDEAgent/DDEAgent/config.xml";    
+            }
             try {
                 XmlDocument doc = new XmlDocument();
                 doc.Load(path);
@@ -36,6 +43,10 @@ namespace DDEAgent {
             } catch (Exception ex) {
                 Console.WriteLine("Error in loadFile: "+ ex);            
             }
+        }
+        static public void CheckRelativeFilePath() {
+            //This folder path is %project directory%/bin/debug/test/img.bmp
+            bool exists = File.Exists("test/img.bmp");
         }
     }
 }
