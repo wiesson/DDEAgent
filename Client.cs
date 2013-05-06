@@ -20,8 +20,8 @@ namespace DDEAgent {
                     /* foreach() {
                     } */
 
-                    client.StartAdvise("/Channel/ProgramInfo/actLineNumber", 1, true, 60000);
-                    /* 
+                    // client.StartAdvise("/Channel/ProgramInfo/actLineNumber", 1, true, 60000);
+                   
                     client.StartAdvise("/Channel/State/actTNumber", 1, true, 60000);
                     client.StartAdvise("/Channel/Spindle/cmdSpeed[1]", 1, true, 60000);
                     client.StartAdvise("/Channel/Spindle/speedOvr[1]", 1, true, 60000);
@@ -38,7 +38,7 @@ namespace DDEAgent {
                     client.StartAdvise("/Channel/ProgramInfo/singleBlock[2]", 1, true, 60000);
                     client.StartAdvise("/Channel/State/chanAlarm", 1, true, 60000);
                     client.StartAdvise("/Bag/State/opMode", 1, true, 60000);
-                    */
+                  
                     client.Advise += OnAdvise;
 
                     // Wait for the user to press ENTER before proceding.
@@ -105,10 +105,10 @@ namespace DDEAgent {
         private static void OnAdvise(object sender, DdeAdviseEventArgs args) {
             Console.WriteLine(args.Item + ": " + args.Text);
             string eventTime = DateTime.Now.ToString("yyMMddHHmmssfff");
-            string eventValue = args.Text.Replace(Convert.ToChar(0x0).ToString(), ""); // avoid 0x0 .. 
+            string eventValue = args.Text.Replace(Convert.ToChar(0x0).ToString(), ""); // avoid 0x0 error !! 
 
-            string xmlMessage = Events.createMessage(Configuration.clientId, eventTime, args.Item, eventValue);
-            Network.sendMessage(Configuration.serverAddress, Configuration.serverPort, xmlMessage);
+            string xmlMessage = Events.createMessage(XMLConfig.clientId, eventTime, args.Item, eventValue);
+            Network.sendMessage(XMLConfig.serverAddress, XMLConfig.serverPort, xmlMessage);
         }
 
         private static void OnDisconnected(object sender, DdeDisconnectedEventArgs args) {

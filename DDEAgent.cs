@@ -6,7 +6,7 @@ using NDde.Client;
 namespace DDEAgent {
     class DDEAgent {
          public static void Main(string[] args) {
-            Configuration.loadFile();            
+            XMLConfig.loadFile();            
 
             // Wait for the user to press ENTER before proceding.
             Console.WriteLine("starting DDEAgent");

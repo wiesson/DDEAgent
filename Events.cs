@@ -19,7 +19,7 @@ namespace DDEAgent {
             string temp = "";
             for (int i = 0; i < list.Count; i++) {
                 if (list[i].foreignEvent.Equals(myEvent)) {
-                    Console.WriteLine("Event " + list[i].unifiedEvent + " Equals " + myEvent);
+                    // Console.WriteLine("Event " + list[i].unifiedEvent + " Equals " + myEvent);
                     temp = list[i].unifiedEvent;
                     break;
                 } else {

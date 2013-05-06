@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 
 namespace DDEAgent {
-    class Configuration {
+    class XMLConfig {
         public static string clientId { get; set; }
         public static string serverAddress { get; set; }
         public static int serverPort { get; set; }
