@@ -1,7 +1,6 @@
-﻿using System;               // For String, Int32, Console, ArgumentException
-using System.Text;          // For Encoding
+﻿using System;               // String, Int32, Console, ArgumentException
 using System.Net;
-using System.Net.Sockets;   // For TcpClient, NetworkStream, SocketException
+using System.Net.Sockets;   // TcpClient, NetworkStream, SocketException
 using System.IO;
 
 class Network {

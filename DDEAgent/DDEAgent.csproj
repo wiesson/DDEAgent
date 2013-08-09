@@ -98,7 +98,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client.cs" />
     <Compile Include="Events.cs" />
     <Compile Include="Network.cs" />
     <Compile Include="XMLConfig.cs" />

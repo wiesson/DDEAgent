@@ -44,9 +44,5 @@ namespace DDEAgent {
                 Console.WriteLine("Error in loadFile: "+ ex);            
             }
         }
-        static public void CheckRelativeFilePath() {
-            //This folder path is %project directory%/bin/debug/test/img.bmp
-            bool exists = File.Exists("test/img.bmp");
-        }
     }
 }
