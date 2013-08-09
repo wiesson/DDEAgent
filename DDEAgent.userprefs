@@ -1,12 +1,12 @@
 ﻿<Properties>
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Release" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="DDEAgent/Events.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="DDEAgent/DDEAgent.cs">
     <Files>
       <File FileName="DDEAgent/DDEAgent.cs" Line="12" Column="13" />
       <File FileName="DDEAgent/Network.cs" Line="1" Column="1" />
       <File FileName="DDEAgent/Queue.cs" Line="1" Column="1" />
-      <File FileName="DDEAgent/XMLConfig.cs" Line="49" Column="1" />
-      <File FileName="DDEAgent/Events.cs" Line="48" Column="5" />
+      <File FileName="DDEAgent/XMLConfig.cs" Line="1" Column="1" />
+      <File FileName="DDEAgent/Events.cs" Line="4" Column="1" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
